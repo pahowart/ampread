@@ -50,11 +50,6 @@ key = config.get("client_key", "key")
 # Import adafruit io library and create instance of REST client in order to use adafruit io website.
 from Adafruit_IO import Client, Data
 
-# login to adafruit io using config file for credentials.
-# you can input your client key directly here instead of using a config file.
-# change aio = key to aio = Client('your_key_here') if you don't want to use configparser.
-aio = Client('{}'.format(key))
-
 # Create an ADS1015 ADC (12-bit) instance.
 adc = Adafruit_ADS1x15.ADS1015()
 GAIN = 4   # see ads1015/1115 documentation for potential values.
@@ -68,6 +63,11 @@ onpeak = float(0.180)
 
 # start loop to find current and utility voltage and then upload to io.adafruit sensor dashboard
 while True:
+    # login to adafruit io using config file for credentials.
+    # you can input your client key directly here instead of using a config file.
+    # change aio = key to aio = Client('your_key_here') if you don't want to use configparser.
+    aio = Client('{}'.format(key))
+
     # reset variables
     count = int(0)
     data = [0]*4
@@ -145,7 +145,7 @@ while True:
 
     # Get current month, day, hour for rate schedule calculations
     month = datetime.date.today().strftime("%m")
-    day = datetime.date.today().strftime("%A")
+    day = datetime.datetime.today().weekday()
     hour = datetime.datetime.now().time()
 
     # These are the time ranges for time of use in Ontario as of Aug 2016.
@@ -199,8 +199,8 @@ while True:
     # In Ontario weekends and holidays are always offpeak.
     # Check to see if it is a weekend
     now = datetime.datetime.now()
-    if now.weekday() == 0 or now.weekday() == 6:
-        rate = offpeak
+    if day == 0 or day >= 5:
+        rate = tou_04
 
     # Place holder to add in a holiday calendar check and force offpeak if true.
 
