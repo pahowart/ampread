@@ -14,6 +14,7 @@ This project uses:
 4. io.adafruit account to display sensor data.
 
 So far there are two versions:
+
   adafruit_io with no exception handling and 
   
   adafruit_iov1a with basic exception handling. 
