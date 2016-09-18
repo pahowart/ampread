@@ -165,7 +165,7 @@ while True:
         continue
 
     # Get current month, day, hour for rate schedule calculations
-    month = datetime.date.today().strftime("%m")
+    month = datetime.date.today().month
     day = datetime.datetime.today().weekday()
     hour = datetime.datetime.now().time()
 
