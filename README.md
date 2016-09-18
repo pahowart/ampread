@@ -4,6 +4,7 @@ raspi python script to read sct-013 current sensors and upload to io.adafruit
 I found lots of arduino projects for energy monitoring but I wanted something for the Raspberry Pi.
 
 This project uses:
+
 1. Raspberry Pi Model 2B, but should work on any model.
 
 2. ADS1015 Analog Digital convertor. I like this unit as it has a GAIN function built in.
