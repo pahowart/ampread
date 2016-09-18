@@ -17,7 +17,7 @@ This project uses:
 
 1. Raspberry Pi Model 2B, but should work on any model.
 
-2. ADS1015 Analog Digital convertor. I like this unit as it has a GAIN function built in.
+2. ADS1015 Analog Digital converter. I like this unit as it has a GAIN function built in.
  
 3. SCT-013 Split winding current sensor. This is the type that is calibrated to output 1V for 30A.
  
