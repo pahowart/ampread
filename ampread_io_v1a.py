@@ -177,7 +177,7 @@ while True:
 
     # Assign pricing to TOU time range by summer and winter
     # Determine if summer or winter schedule is in effect.
-    if 4 < month > 10:
+    if 5 <= month <= 11:
         tou_01 = midpeak
         tou_02 = onpeak
         tou_03 = midpeak
