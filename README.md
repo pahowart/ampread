@@ -29,7 +29,7 @@ So far there are two versions:
 
   adafruit_io with no exception handling and 
   
-  adafruit_iov1a with basic exception handling. 
+  adafruit_io_v1c with basic exception handling and holiday schedule implemented.
   
 I have no idea how to use github correctly for version control etc. Figuring that out is for another day.
 
