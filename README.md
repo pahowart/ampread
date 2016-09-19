@@ -7,8 +7,6 @@ todo:
 
 - scale out for more sensors in circuit panel
 
-- add in holiday verification to complete time of use calculations
-
 - set up local adafruit io server to capture data and upload using TLS.
 
 - add in support for sending data to an sql database.
