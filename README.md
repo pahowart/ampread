@@ -1,15 +1,7 @@
 # ampread
-raspi python script to read sct-013 current sensors and upload to io.adafruit
+raspi python script to read sct-013 current sensors and upload to either io.adafruit or a local influxdb
 
 I found lots of arduino projects for energy monitoring but I wanted something for the Raspberry Pi. This python code will take current and voltage readings and then calculate total kilowatts and current cost/kwh based on Ontario time of use pricing.
-
-todo: 
-
-- scale out for more sensors in circuit panel
-
-- set up local adafruit io server to capture data and upload using TLS.
-
-- add in support for sending data to an sql database.
 
 This project uses:
 
@@ -21,14 +13,17 @@ This project uses:
  
 4. APC UPS with apcupsd and multimon running to get utility AC voltage
  
-5. io.adafruit account to display sensor data.
+5. io.adafruit account to display sensor data or an instance of influxDB
 
-So far there are two versions:
+So far there are three versions:
 
-  adafruit_io with no exception handling and 
+  i) adafruit_io with no exception handling and 
   
-  adafruit_io_v1d with basic exception handling and holiday schedule implemented.
+  ii) adafruit_io_v1d with basic exception handling and holiday schedule implemented.
   
+  iii) apmread_influxdb - use with innfluxdb and grafana for graphic readout.
+  
+ 
 I have no idea how to use github correctly for version control etc. Figuring that out is for another day.
 
 I used this project to teach myself python and therefore my not have followed all of the correct conventions. Sometimes I did things that could have been done with fewer steps in order to help myself keep track of what needed to be done.
