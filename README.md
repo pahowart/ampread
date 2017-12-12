@@ -21,7 +21,7 @@ So far there are three versions:
   
   ii) adafruit_io_v1d with basic exception handling and holiday schedule implemented.
   
-  iii) apmread_influxdb - use with influxdb and grafana for graphic readout.
+  iii) ampread_influxdb - use with influxdb and grafana for graphic readout.
   
 For the grafana/influxdb instance I used the following docker build on unbuntu 16.04: 
 https://hub.docker.com/r/samuelebistoletti/docker-statsd-influxdb-grafana/
