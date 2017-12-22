@@ -13,20 +13,22 @@ This project uses:
  
 4. APC UPS with apcupsd and multimon running to get utility AC voltage
  
-5. io.adafruit account to display sensor data or an instance of influxDB
+5. io.adafruit account to display sensor data or
+
+6. an instance of influxDB with grafana to display dashboard
 
 So far there are three versions:
 
-  i) adafruit_io with no exception handling and 
+  i) adafruit_io with no exception handling (no longer under development)
   
-  ii) adafruit_io_v1d with basic exception handling and holiday schedule implemented.
+  ii) adafruit_io_v1d with basic exception handling and holiday schedule implemented. (no longer under development)
   
-  iii) ampread_influxdb - use with influxdb and grafana for graphic readout.
+  iii) ampread_influxdb - use with influxdb and grafana for graphic readout. (See screen shot)
   
 For the grafana/influxdb instance I used the following docker build on unbuntu 16.04: 
 https://hub.docker.com/r/samuelebistoletti/docker-statsd-influxdb-grafana/
 
-You can import my grafana dashboard using the ampread.json file.
+You can import my grafana dashboard using the "grafana ampread dashboard.json" file.
   
  
 I have no idea how to use github correctly for version control etc. Figuring that out is for another day.
