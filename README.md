@@ -25,13 +25,9 @@ So far there are three versions:
   
   iii) ampread_influxdb - use with influxdb and grafana for graphic readout. (See screen shot)
   
-For the grafana/influxdb instance I used the following docker build on unbuntu 16.04: 
-https://hub.docker.com/r/samuelebistoletti/docker-statsd-influxdb-grafana/
+For the grafana dashboard you can use my docker container here: https://hub.docker.com/r/pahowart/influxdb-grafana/
 
-You can import my grafana dashboard using the "grafana ampread dashboard.json" file.
-  
- 
-I have no idea how to use github correctly for version control etc. Figuring that out is for another day.
+You can import my grafana ampread dashboard using the "grafana ampread dashboard.json" file.
 
 I used this project to teach myself python and therefore may not have followed all of the correct conventions. Sometimes I did things that could have been done with fewer steps in order to help myself keep track of what needed to be done.
 
