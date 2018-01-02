@@ -16,28 +16,15 @@
 # the ebook Raspberry Pi: Measure, Record, Explore by Malcolm Maclean
 # This script is intentionally over commented to help out other newbie's like me.
 #
-#MIT License
-#
-#Copyright (c) 2017 Paul Howarth
-#
-#Permission is hereby granted, free of charge, to any person obtaining a copy
-#of this software and associated documentation files (the "Software"), to deal
-#in the Software without restriction, including without limitation the rights
-#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#copies of the Software, and to permit persons to whom the Software is
-#furnished to do so, subject to the following conditions:
-#
-#The above copyright notice and this permission notice shall be included in all
-#copies or substantial portions of the Software.
-#
-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-#SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
 
+# !/usr/bin/env python
 
 import time
 import sys
@@ -47,12 +34,12 @@ import math
 import holidays
 from influxdb import InfluxDBClient
 
-
 # Load urllib to scrape AC Mains voltage reading from APCUPSD CGI webmon page.
 # There are other methods to get your utility voltage
 # I just happen to have an apc ups with apcupsd already.
 # If you use this method you will need to update urlStr with your apcupsd webmon url.
 import urllib
+
 urlStr = "http://192.168.10.200/cgi-bin/apcupsd/upsstats.cgi?"
 
 # Create first ADS1015 ADC instance.
@@ -61,7 +48,7 @@ adc1 = Adafruit_ADS1x15.ADS1015(address=0x48, busnum=1)
 # Create a second ADS1015 ADC instance if are using a second ADC.
 adc2 = Adafruit_ADS1x15.ADS1115(address=0x49, busnum=1)
 
-GAIN_A = 4   # see ads1015/1115 documentation for potential values.
+GAIN_A = 4  # see ads1015/1115 documentation for potential values.
 GAIN_B = 4
 samples = 200  # change this value to increase or decrease the number of samples taken
 places = int(2)
@@ -75,10 +62,10 @@ while True:
     try:
         # reset variables
         count = int(0)
-        data = [0]*4
-        maxValue = [0]*4
-        IrmsA = [0]*4
-        ampsA = [0]*4
+        data = [0] * 4
+        maxValue = [0] * 4
+        IrmsA = [0] * 4
+        ampsA = [0] * 4
         voltage = float(0)
         kilowatts = float(0)
 
@@ -148,11 +135,15 @@ while True:
         ampsB2 = ampsB[2]
         ampsB3 = ampsB[3]
 
-    except: "error"
 
-# Scrape AC Mains voltage from apcupsd webmon
-# This works for apcupsd ver: 3.14.12 , but may break in other releases if page layout changes.
-# It would be better to use a parser, but that is beyond my pay grade at this point.
+
+    except KeyboardInterrupt:
+        print('You cancelled the operation.')
+        sys.exit()
+
+    # Scrape AC Mains voltage from apcupsd webmon
+    # This works for apcupsd ver: 3.14.12 , but may break in other releases if page layout changes.
+    # It would be better to use a parser, but that is beyond my pay grade at this point.
     fileObj = urllib.urlopen(urlStr)
     for line in fileObj:
         if 'Utility Voltage:' in line:
@@ -164,7 +155,6 @@ while True:
     # Calculate total from all sensors and convert to kilowatts
     kilowatts = ((ampsA0 + ampsA1 + ampsA2 + ampsA3 + ampsB0 + ampsB1 + ampsB2 + ampsB3) * voltage) / 1000
     kilowatts = round(kilowatts, places)
-
 
     # Get current month, day, hour for rate schedule calculations
     date = datetime.date.today()
@@ -243,8 +233,8 @@ while True:
         {
             "measurement": "current",
             "tags": {
-            "schedule": schedule,
-            "rate": rate,
+                "schedule": schedule,
+                "rate": rate,
             },
             "time": iso,
             "fields": {
@@ -260,16 +250,21 @@ while True:
         }
     ]
 
-    client = InfluxDBClient('192.168.10.11', 8086, 'root', 'root', 'ampread')
-    client.write_points(json_body)
+    client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
+    try:
+        client.create_database('ampread')
+        client.write_points(json_body)
+    except ConnectionError:
+        print('influxdb server not responding')
+        break
 
     # write voltage and rate to database
     json_body = [
         {
             "measurement": "voltage",
             "tags": {
-            "schedule": schedule,
-            "rate": rate
+                "schedule": schedule,
+                "rate": rate
             },
             "time": iso,
             "fields": {
@@ -282,8 +277,15 @@ while True:
         }
     ]
 
-    client = InfluxDBClient('192.168.10.11', 8086, 'root', 'root', 'ampread')
-    client.write_points(json_body)
+    client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
+    try:
+        client.create_database('ampread')
+        client.write_points(json_body)
+    except ConnectionError:
+        print('influxdb server not responding')
+        break
+    # result = client.query('select value from voltage;')
+    # print("Result: {0}".format(result))
 
 # Wait before repeating loop
 time.sleep(20)
