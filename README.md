@@ -1,5 +1,5 @@
 # ampread
-Rapberry PI python script to read SCT-013 current sensors and upload to either io.adafruit or a local influxdb
+Raspberry PI python script to read SCT-013 current sensors and upload to either io.adafruit or a local influxdb
 
 I found lots of arduino projects for energy monitoring but I wanted something for the Raspberry Pi. This python code will take current and voltage readings and then calculate total kilowatts and current cost/kwh based on Ontario time of use pricing.
 
