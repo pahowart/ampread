@@ -244,7 +244,7 @@ while True:
             }
         }
     ]
-
+    # Change the client IP address and user/password to match your instance of influxdb
     client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
     try:
         client.create_database('ampread')
@@ -271,7 +271,7 @@ while True:
             }
         }
     ]
-# Change the client IP address and user/password to match your instance of influxdb
+    # Change the client IP address and user/password to match your instance of influxdb
     client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
     try:
         client.create_database('ampread')
