@@ -3,8 +3,6 @@
 # an adafruit ads1015 AD converter to monitor individual house panel circuit current.
 # The sensor output is then uploaded to influxdb.
 #
-# Working dashboard can be seen here https://io.adafruit.com/shammie_hands/current-meter
-#
 # Please note that there is only basic error checking implemented.
 #
 # This code is free to use, copy or distribute.
