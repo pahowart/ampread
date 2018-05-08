@@ -5,10 +5,7 @@
 #
 # Working dashboard can be seen here https://io.adafruit.com/shammie_hands/current-meter
 #
-# Please note that there is only basic error checking implemented. That means that if there is
-# an issue with the adafruit io site this python script may error out. If you want to
-# avoid this I suggest that you use upstart to restart this python script if it
-# errors out.
+# Please note that there is only basic error checking implemented.
 #
 # This code is free to use, copy or distribute.
 #
@@ -165,12 +162,12 @@ while True:
 
     # Assign pricing to TOU time range by summer and winter
     # Determine if summer or winter time of use schedule is in effect.
-    # Time of Use kwh electricity pricing for Ontario as of Aug 2017.
+    # Time of Use kwh electricity pricing for Ontario as of May 2018.
     offpeak = float(0.065)
-    midpeak = float(0.095)
+    midpeak = float(0.094)
     onpeak = float(0.132)
 
-    # These are the time ranges for time of use in Ontario as of Aug 2017.
+    # These are the time ranges for time of use in Ontario as of May 2018.
     # Winter Time of Use tou_01 Schedule 7am to 11am
     # Winter Time of Use tou_02 Schedule 11am to 5pm
     # Winter Time of Use tou_03 Schedule 5pm to 7pm
@@ -276,7 +273,7 @@ while True:
             }
         }
     ]
-
+# Change the client IP address and user/password to match your instance of influxdb
     client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
     try:
         client.create_database('ampread')
