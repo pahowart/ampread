@@ -245,13 +245,15 @@ while True:
         }
     ]
     # Change the client IP address and user/password to match your instance of influxdb
-    client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
+    # Note that I have no user or password, place them in the quotes '' after port number
+    # retries=0 means infinate attempts.
+    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ampread',timeout=60,retries=0)
     try:
         client.create_database('ampread')
         client.write_points(json_body)
     except ConnectionError:
         print('influxdb server not responding')
-        break
+    #   break
 
     # write voltage and rate to database
     json_body = [
@@ -271,14 +273,14 @@ while True:
             }
         }
     ]
-    # Change the client IP address and user/password to match your instance of influxdb
-    client = InfluxDBClient('172.20.0.2', 8086, 'root', 'root', 'ampread')
+
+    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ampread',timeout=60,retries=0)
     try:
         client.create_database('ampread')
         client.write_points(json_body)
     except ConnectionError:
         print('influxdb server not responding')
-        break
+    #    break
     # result = client.query('select value from voltage;')
     # print("Result: {0}".format(result))
 
