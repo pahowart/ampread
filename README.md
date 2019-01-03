@@ -12,18 +12,10 @@ This project uses:
 3. SCT-013 Split winding current sensor. This is the type that is calibrated to output 1V for 30A.
  
 4. APC UPS with apcupsd and multimon running to get utility AC voltage
- 
-5. io.adafruit account to display sensor data or
 
-6. an instance of influxDB with grafana to display dashboard
+6. InfluxDB with grafana to display dashboard
 
-So far there are three versions:
-
-  i) adafruit_io with no exception handling (no longer under development)
-  
-  ii) adafruit_io_v1d with basic exception handling and holiday schedule implemented. (no longer under development)
-  
-  iii) ampread_influxdb - use with influxdb and grafana for graphic readout. (See screen shot)
+There are 2 versions: ampread_python2 (Tested on Python 2.7) and ampread_python3 (Tested on Python 3.5)
   
 For the grafana dashboard you can use my docker container here: https://hub.docker.com/r/pahowart/influxdb-grafana/
 
