@@ -21,9 +21,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
-
-import time
 import sys
 import datetime
 import Adafruit_ADS1x15
@@ -50,9 +47,6 @@ GAIN_A = 4  # see ads1015/1115 documentation for potential values.
 GAIN_B = 4
 samples = 200  # change this value to increase or decrease the number of samples taken
 places = int(2)
-
-# Define holidays country as Canada
-ca_holidays = holidays.Canada()
 
 # start loop to find current and utility voltage and then upload to io.adafruit sensor dashboard
 while True:
@@ -213,6 +207,8 @@ while True:
     if weekday == 0 or weekday >= 5:
         rate = tou_04
 
+    # Define holidays country as Canada
+    ca_holidays = holidays.Canada()
     # Check to see if it is a holiday.
     if date in ca_holidays:
         rate = tou_04
