@@ -199,7 +199,7 @@ while True:
 
     # Check for tou_03 time range
     start = datetime.time(22, 00)
-    end = datetime.time(24, 00)
+    end = datetime.time(23, 59)
     if start <= hour <= end:
         rate = tou_03
 
