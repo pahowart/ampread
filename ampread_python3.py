@@ -184,21 +184,22 @@ while True:
     # Default rate is tou_04
     rate = tou_04
 
+    # Convert your local start and stop times to UTC: For example 11:00 EST will become 16:00UTC
     # Check for tou_01 time range
-    start = datetime.time(7, 00)
-    end = datetime.time(11, 00)
+    start = datetime.time(11, 00)
+    end = datetime.time(16, 00)
     if start <= hour <= end:
         rate = tou_01
 
     # Check for tou_02 time range
-    start = datetime.time(11, 00)
-    end = datetime.time(17, 00)
+    start = datetime.time(16, 00)
+    end = datetime.time(22, 00)
     if start <= hour <= end:
         rate = tou_02
 
     # Check for tou_03 time range
-    start = datetime.time(17, 00)
-    end = datetime.time(19, 00)
+    start = datetime.time(22, 00)
+    end = datetime.time(24, 00)
     if start <= hour <= end:
         rate = tou_03
 
