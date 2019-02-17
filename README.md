@@ -15,9 +15,10 @@ This project uses:
 
 6. InfluxDB with grafana to display dashboard
 
-There are 2 versions: ampread_python2 (Tested on Python 2.7) and ampread_python3 (Tested on Python 3.5)
-  
-For the grafana dashboard you can use my docker container here: https://hub.docker.com/r/pahowart/influxdb-grafana/
+There are 2 versions: 
+
+1. ampread_python2 (Tested on Python 2.7 but no longer updated) and 
+2. ampread_python3 (Tested on Python 3.5 and still updated)
 
 You can import my grafana ampread dashboard using the "grafana ampread dashboard.json" file.
 
