@@ -162,10 +162,10 @@ while True:
     onpeak = float(0.132)
 
     # These are the time ranges for time of use in Ontario as of Jan 2019.
-    # Winter Time of Use tou_01 Schedule 7am to 11am
-    # Winter Time of Use tou_02 Schedule 11am to 5pm
-    # Winter Time of Use tou_03 Schedule 5pm to 7pm
-    # Winter Time of Use tou_04 Schedule 7pm to 7am
+    # Winter Time of Use tou_01 Schedule 7am to 11am  EST
+    # Winter Time of Use tou_02 Schedule 11am to 5pm  EST
+    # Winter Time of Use tou_03 Schedule 5pm to 7pm   EST
+    # Winter Time of Use tou_04 Schedule 7pm to 7am   EST
     # Weekends and Holidays are always tou_04
 
     if 5 <= month < 11:
@@ -184,22 +184,21 @@ while True:
     # Default rate is tou_04
     rate = tou_04
 
-    # Convert your local start and stop times to UTC: For example 11:00 EST will become 16:00UTC
     # Check for tou_01 time range
-    start = datetime.time(11, 00)
-    end = datetime.time(16, 00)
+    start = datetime.time(7, 00)
+    end = datetime.time(11, 00)
     if start <= hour <= end:
         rate = tou_01
 
     # Check for tou_02 time range
-    start = datetime.time(16, 00)
-    end = datetime.time(22, 00)
+    start = datetime.time(11, 00)
+    end = datetime.time(17, 00)
     if start <= hour <= end:
         rate = tou_02
 
     # Check for tou_03 time range
-    start = datetime.time(22, 00)
-    end = datetime.time(23, 59)
+    start = datetime.time(17, 00)
+    end = datetime.time(19, 00)
     if start <= hour <= end:
         rate = tou_03
 
