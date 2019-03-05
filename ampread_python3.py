@@ -221,7 +221,7 @@ while True:
     iso = datetime.datetime.utcnow().isoformat() + 'Z'
 
     # write all current readings to database
-    # there are two separate rights to the database: one for current, and one for other misc.
+    # there are two separate writes to the database: one for current, and one for other misc.
     json_body = [
         {
             "measurement": "current",
