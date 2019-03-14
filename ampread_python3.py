@@ -35,6 +35,7 @@ from influxdb import InfluxDBClient
 # Note urllib
 import urllib.request
 
+# Comment out this line if you don't have apcupsd with webmon cgi scripts working, otherwise script will fail.
 urlStr = 'http://192.168.10.200/cgi-bin/apcupsd/upsstats.cgi?'
 
 # Create first ADS1015 ADC instance.
@@ -135,6 +136,7 @@ while True:
 
     # Scrape AC Mains voltage from apcupsd webmon
     # This works for apcupsd ver: 3.14.14 , but may break in other releases if page layout changes.
+    # Comment out this section if you do not have a working apcupsd webmon instance or script will break.
     fileObj = urllib.request.urlopen(urlStr)
     for line in fileObj:
         if rb'Utility Voltage:' in line:
