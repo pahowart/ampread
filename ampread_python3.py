@@ -32,10 +32,11 @@ from influxdb import InfluxDBClient
 # There are other methods to get your utility voltage
 # I just happen to have an apc ups with apcupsd already.
 # If you use this method you will need to update urlStr with your apcupsd webmon url.
-# Note urllib
-import urllib.request
 
-# Comment out this line if you don't have apcupsd with webmon cgi scripts working, otherwise script will fail.
+import urllib.request
+from urllib.error import URLError, HTTPError
+
+# Comment out this line if you don't have apcupsd with webmon cgi scripts working.
 urlStr = 'http://192.168.10.200/cgi-bin/apcupsd/upsstats.cgi?'
 
 # Create first ADS1015 ADC instance.
@@ -136,8 +137,19 @@ while True:
 
     # Scrape AC Mains voltage from apcupsd webmon
     # This works for apcupsd ver: 3.14.14 , but may break in other releases if page layout changes.
-    # Comment out this section if you do not have a working apcupsd webmon instance or script will break.
-    fileObj = urllib.request.urlopen(urlStr)
+    # Comment out this section if you do not have a working apcupsd webmon instance. 
+    # Exception handling will set voltage to 120 if webscrape is unsuccessful.
+    try:
+        fileObj = urllib.request.urlopen(urlStr)
+    
+    except HTTPError as e:
+        fileObj = ''
+        voltage = float(120)
+    
+    except URLError as e:
+        fileObj = ''
+        voltage = float(120)
+        
     for line in fileObj:
         if rb'Utility Voltage:' in line:
             startIndex = line.find(rb':') + 2
