@@ -1,3 +1,4 @@
+# THIS VERSION IS NO LONGER ACTIVELY DEVELOPED
 # Author Paul Howarth
 # Sample program for Raspberry Pi V2 using SCT-013 current sensors and
 # an adafruit ads1015 AD converter to monitor individual house panel circuit current.
