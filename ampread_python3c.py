@@ -168,15 +168,22 @@ while True:
         STATUS = (values[51])
     
     except:
-        # shift values during power outage due to additional status line
-        BCHG = float(values[0])
-        TIMELEFT = round(float(values[2])/60,2)
-        UPSMODEL = (values[5])
-        LINEV = float(values[20])
-        LOAD = float(values[43])
-        SERVER = (values[51])
-        STATUS = (values[52]) 
-        continue
+        try:
+            # shift values during power outage due to additional status line
+            LINEV = float(values[20])
+            LOAD = float(values[43])
+            SERVER = (values[51])
+            STATUS = (values[52])
+        
+        except:
+            BCHG = float(100)
+            TIMELEFT = round(float(30.0)/60)
+            UPSMODEL = ('Script Error')
+            LINEV = float(120)
+            LOAD = float(50)
+            SERVER = ('Script Error')
+            STATUS = ('Script Error')
+
 
     # Calculate total AMPS from all sensors and convert to kilowatts
     kilowatts = ((ampsA0 + ampsA1 + ampsA2 + ampsA3 + ampsB0 + ampsB1 + ampsB2 + ampsB3) * LINEV) / 1000
@@ -276,7 +283,7 @@ while True:
     # Change the client IP address and user/password to match your instance of influxdb
     # Note that I have no user or password, place them in the quotes '' after port number
     # retries=0 means infinate attempts.
-    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ampread', timeout=60,retries=0)
+    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ampread', timeout=60,retries=3)
     try:
         client.create_database('ampread')
         client.write_points(json_amps)
@@ -301,7 +308,7 @@ while True:
         }
     ]
 
-    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ampread', timeout=60,retries=0)
+    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ampread', timeout=60,retries=3)
     try:
         client.create_database('ampread')
         client.write_points(json_misc)
@@ -332,7 +339,7 @@ while True:
     #print(values)                       # uncomment for testing if values update
     
     # write values to influxdb
-    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ups_stats', timeout=60,retries=0)
+    client = InfluxDBClient('192.168.10.13', 8086, '', '', 'ups_stats', timeout=60,retries=3)
     try:
         client.create_database('ups_stats')
         client.write_points(json_ups)
