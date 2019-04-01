@@ -11,16 +11,17 @@ This project uses:
  
 3. SCT-013 Split winding current sensor. This is the type that is calibrated to output 1V for 30A.
  
-4. APC UPS with apcupsd and multimon running to get utility AC voltage
+4. UPS with APCUPSD or NUT support and network information server running to grab utility AC voltage
 
 6. InfluxDB with grafana to display dashboard
 
-There are 2 versions: 
+There are 3 versions: 
 
-1. ampread_python2 (Tested on Python 2.7 but no longer updated) and 
-2. ampread_python3 (Tested on Python 3.5 and still updated)
+1. ampread_python2 (Tested on Python 2.7 but no longer developed and 
+2. ampread_python3b (Tested on Python 3.5 with APCUPSD UPS, no longer developed)
+3. ampread_python3c (Tested with Python 3.5 with UPS and NUT server. current version I use)
 
 You can import my grafana ampread dashboard using the "grafana ampread dashboard.json" file.
 
-I used this project to teach myself python and therefore may not have followed all of the correct conventions. Sometimes I did things that could have been done with fewer steps in order to help myself keep track of what needed to be done.
+You will also find separate files for UPS monitoring in my other projects. 
 
