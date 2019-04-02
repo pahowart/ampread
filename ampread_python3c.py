@@ -177,10 +177,10 @@ while True:
         
         except:
             BCHG = float(100)
-            TIMELEFT = round(float(30.0)/60)
+            TIMELEFT = round(float(300.0)/60,2)
             UPSMODEL = ('Script Error')
-            LINEV = float(120)
-            LOAD = float(50)
+            LINEV = float(120.0)
+            LOAD = float(50.0)
             SERVER = ('Script Error')
             STATUS = ('Script Error')
 
