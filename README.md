@@ -19,7 +19,7 @@ There are 3 versions:
 
 1. ampread_python2 (Tested on Python 2.7 but no longer developed and 
 2. ampread_python3b (Tested on Python 3.7 with APCUPSD UPS, no longer developed)
-3. ampread_python3d (Tested with Python 3.7 with UPS and NUT server. current version I use)
+3. ampread_python3e (Tested with Python 3.7 with UPS and NUT server. current version I use)
 
 You can import my grafana ampread dashboard using the "grafana ampread dashboard.json" file.
 
