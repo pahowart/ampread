@@ -263,7 +263,7 @@ while True:
     else:
         tou = 'onpeak'
         
-    # caluculate kilowatts / hour - kWh
+    # convert kilowatts to kilowatts / hour (kWh)
     kwh = round((kilowatts * time_elapsed)/3600,8)
     
     # Calculate estimated cost / hour assuming current usage is maintained for an hour
