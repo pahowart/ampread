@@ -139,7 +139,7 @@ while True:
     # Other variables are captured to display UPS info in separate Grafana dashboard
     
     # NUT server ip, port number
-    HOST = ('192.168.10.1') 
+    HOST = ('xxx.xxx.xxx.xxxx') 
     PORT = 3493
     
     # Open socket with remote host
