@@ -247,7 +247,7 @@ while True:
 
     # In Ontario, weekends and holidays are always offpeak.
     # Check to see if it is a weekend
-    if date.today().weekday() in range(6,7):
+    if date.today().weekday() in (5,6):
         rate = tou_04
 
     # Check to see if it is a holiday.
